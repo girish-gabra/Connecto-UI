@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App,{Wall} from './App';
+import Header,{Wall} from './App';
 
 
 ReactDOM.render(
-  <App />,
+  <Header />,
   document.getElementById('root')
 )
 

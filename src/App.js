@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 
-class App extends Component {
+class Header extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="Header">
         <h1>Connecto</h1>
       </div>
     );
@@ -27,4 +27,4 @@ export class Wall extends Component {
 }
 
 
-export default App
+export default Header
