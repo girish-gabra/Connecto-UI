@@ -1,12 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header,{Wall} from './App';
+import Header,{Wall,AddButton} from './App';
 
 
 ReactDOM.render(
   <Header />,
   document.getElementById('root')
 )
+
+ReactDOM.render(
+		<AddButton />,
+		document.getElementById('add')
+	
+	)
 
 ReactDOM.render(
 	<Wall />,
