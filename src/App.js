@@ -6,7 +6,9 @@ class Header extends Component {
   render() {
     return (
       <div className="Header">
-        <h1>Connecto</h1>
+        <h1>Connecto
+        	<span className="pull-right">Welcome, Sam</span>
+        </h1>
       </div>
     );
   }
@@ -44,6 +46,10 @@ export class Wall extends Component {
 			url:'http://localhost:7777/getFileNames',
 			type:'GET',
 			success(data){
+				if(data==='No Files'){
+					alert(data);
+					return;
+				}
 				that.setState({filenames:data});
 			},
 			error(err){
@@ -63,13 +69,15 @@ export class Wall extends Component {
 			filenamestmp = filenamestmp.substring(1,filenamestmp.length-1);	//remove quotes from string
 			fileArr = filenamestmp.split(",");
 		} 
-		
-		for(var i=fileArr.length-1;i>1;i--)
+		console.log(fileArr.length);
+		for(var i=0;i<fileArr.length;i++)
 		{
-			var filesource = "http://localhost:7777/getPost/"+fileArr[i];
+			//var filesource = "https://shrouded-beyond-79731.herokuapp.com//getPost/"+fileArr[i];
+			console.log(fileArr[i]);
+			var filesource = "https://shrouded-beyond-79731.herokuapp.com/getPost/1.jpg"
 			posts.push(<h3 key={i}>james</h3>);
-			posts.push(<a key={i*10} href="#"><img src={filesource}  alt="" width={400} height={400}/></a>);
-			posts.push(<h3 key={i*100}><b>james</b> life is beautiful...enjoy it.<br/><br/></h3>)
+			posts.push(<a key={i+100} href="#"><img src={filesource}  alt="" width={400} height={400}/></a>);
+			posts.push(<h3 key={i*1000}><b>james</b> life is beautiful...enjoy it.<br/><br/></h3>)
 		}
 		return (
 			<div className="Wall">
@@ -104,18 +112,23 @@ export const AddButton = React.createClass({
   	
   	
   	data.append('fileUpload',this.state.imageFile);
-
+  	let that = this;
   	$.ajax({
-  		url:'http://localhost:7777/uploadPost',
+  		url:'https://shrouded-beyond-79731.herokuapp.com//uploadPost',
   		type:'POST',
   		data:data,
   		contentType: false,
         processData: false,
   		success: function(data){
-  			console.log('success calling test');
+  			//console.log('success calling test');
+  			alert(data+" Please refresh your browser to see the changes");	
+  			that.close();
   		},
   		error:function(xhr,status,err){
+
   			console.log('error calling test'+err);
+  			alert(err);
+  			this.close();
   		}
   	})
   },
@@ -123,19 +136,22 @@ export const AddButton = React.createClass({
     return (
 	      <div className="AddButton">
 	      	<CenterView>
-	        	<Button bsStyle="primary" bsSize="large" onClick={this.open}>Share Your Story</Button>
+	      		<div className="btn-toolbar">
+	        		<Button id="share" bsStyle="primary" bsSize="large" onClick={this.open}>Share Your Story</Button>
+	        		<Button id="profile" bsStyle="success" bsSize="large">My Profile</Button>
+	        	</div>
 	        </CenterView>
+
 	        <Modal show={this.state.showModal} onHide={this.close}>
 	          <Modal.Header closeButton>
-	            <Modal.Title>Choose a Picture</Modal.Title>
+	          	<Modal.Title>Choose a Picture</Modal.Title>
 	          </Modal.Header>
 	          <Modal.Body>
-	            <input id="fileId" type="file" onChange={this.changeFile}></input>
+	           	<input id="fileId" type="file" onChange={this.changeFile}></input>
 	          </Modal.Body>
 	          <Modal.Footer>
 	          	<Button bsStyle="primary" bsSize="large" onClick={this.postdata}>Upload</Button>
-	            <Button bsSize="large" onClick={this.close}>Close</Button>
-	          
+	            <Button bsSize="large" onClick={this.close}>Close</Button>   
 	          </Modal.Footer>
 	          
 	        </Modal>
