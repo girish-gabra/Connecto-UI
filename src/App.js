@@ -43,7 +43,7 @@ export class Wall extends Component {
 		var $ = require('jquery');
 		var that=this;
 		$.ajax({
-			url:'http://localhost:7777/getFileNames',
+			url:'https://shrouded-beyond-79731.herokuapp.com/getFileNames',
 			type:'GET',
 			success(data){
 				if(data==='No Files'){
@@ -72,9 +72,9 @@ export class Wall extends Component {
 		console.log(fileArr.length);
 		for(var i=0;i<fileArr.length;i++)
 		{
-			//var filesource = "https://shrouded-beyond-79731.herokuapp.com//getPost/"+fileArr[i];
+			var filesource = "https://shrouded-beyond-79731.herokuapp.com/getPost/"+fileArr[i];
 			console.log(fileArr[i]);
-			var filesource = "https://shrouded-beyond-79731.herokuapp.com/getPost/1.jpg"
+			//var filesource = "https://shrouded-beyond-79731.herokuapp.com/getPost/2.jpg"
 			posts.push(<h3 key={i}>james</h3>);
 			posts.push(<a key={i+100} href="#"><img src={filesource}  alt="" width={400} height={400}/></a>);
 			posts.push(<h3 key={i*1000}><b>james</b> life is beautiful...enjoy it.<br/><br/></h3>)
@@ -114,7 +114,7 @@ export const AddButton = React.createClass({
   	data.append('fileUpload',this.state.imageFile);
   	let that = this;
   	$.ajax({
-  		url:'https://shrouded-beyond-79731.herokuapp.com//uploadPost',
+  		url:'https://shrouded-beyond-79731.herokuapp.com/uploadPost',
   		type:'POST',
   		data:data,
   		contentType: false,
@@ -128,7 +128,7 @@ export const AddButton = React.createClass({
 
   			console.log('error calling test'+err);
   			alert(err);
-  			this.close();
+  			that.close();
   		}
   	})
   },
