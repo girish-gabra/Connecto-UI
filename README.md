@@ -4,4 +4,6 @@ Any user can upload image as well to share with other users.Images are displayed
 
 UI is built using React JS. React JS helps to build separatble components which makes UI clean and easy to understand.
 
-This project is deployed at Heroku. A minified version was built to deploy on heroku to achieve optimization .
+This project is deployed at Heroku. A minified version was built to deploy on heroku to achieve optimization. 
+Please find the link for the same :
+https://tranquil-gorge-71417.herokuapp.com/
